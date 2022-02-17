@@ -1,17 +1,16 @@
 export const reviewsInitialState = {
-    reviews: []
+    reviews:[]
 }
 
-export default function reviewsReducer(state, action) {
+export default function reviewsReducer(state,action){
     let newState;
-
     switch(action.type){
         case 'addReview':
-            const {idMovie, comment} = action
-            newState = [...state, {id: reviews.length, idMovie: idMovie, comment: comment}]
-        break;
+            const {idMovie,comment} = action
+            newState = {reviews:[...state.reviews,{id:state.reviews.length,idMovie,comment}]}
+            break;
     }
-    return newState
 
+    return newState
 }
 
