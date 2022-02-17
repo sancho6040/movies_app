@@ -4,23 +4,38 @@ import { userContext } from '../context/UserContext';
 
 export default function Login() {
 
-  const {users, activeUser, setActiveUser} = useContext(userContext);
+  const {users, setUser} = useContext(userContext)
 
-  const user = useRef()
-  const password = useRef()
+  const signIn = (event) => {
+        event.preventDefault()
+        const {email,password} = event.target
 
-  const iniciarSesion = (event) =>{
-    event.preventDefault()
+        console.log(email.value,password.value)
 
-    setActiveUser({name: user.current.value, password: password.current.value})
-    
-    return <Navigate to="/"/>
-  }
+        //registro: "https://backendtzuzulcode.wl.r.appspot.com/auth/signup"
+        //Datos para el registro: firstName,lastName,birthday,city,email,password
+        fetch("https://backendtzuzulcode.wl.r.appspot.com/auth/login",{
+            method:"POST",
+            credentials:'include',
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                email:email.value,
+                password:password.value
+            })
+        }).then(res=>res.json())
+        .then(user=>{
+            console.log(user)
+            setUser({logged:true,name:user.data.firstName})
+        }).catch(error=>setUser({logged:false}))
+        
+    }
 
   return <>
     <form className='login' onSubmit={iniciarSesion}>
-      <input className='login-input' type="text" ref={user} name="user" placeholder='username'/>
-      <input className='login-input' type="password" ref={password} name="password" placeholder='password'/>
+      <input className='login-input' type="text" name="user" placeholder='username'/>
+      <input className='login-input' type="password" name="password" placeholder='password'/>
       <button>Iniciar sesion</button>
     </form>
   </>
