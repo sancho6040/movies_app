@@ -1,11 +1,19 @@
-import React,{createContext, useEffect, useState} from 'react';
+import React,{createContext, useEffect, useReducer, useState} from 'react';
+import reviewsReducer, { reviewsInitialState } from '../reducers/reviewsReducer';
+import moviesReducer, {moviesInitialState} from '../reducers/moviesReducer';
 
 export const moviesContext = createContext()
 
 export default function MoviesContext({children}) {
 
     // const [movies,setMovies] = useState(mockup)
-    const [movies,setMovies] = useState([])
+    const [movies,setMovies] = useReducer(moviesReducer, moviesInitialState)
+    const [reviews, dispatchReviews] = useReducer(reviewsReducer, reviewsInitialState)
+
+    const addReview = (movie, stars, comment) =>{
+        setMovies({type: 'addStars', movie, stars})
+        dispatchReviews({type: 'addReview', idMovie: movie.id, comment: comment})
+    }
 
     useEffect(()=>{
         async function fetchData(){
@@ -17,7 +25,7 @@ export default function MoviesContext({children}) {
         fetchData()
     },[])
 
-  return <moviesContext.Provider value={{movies, setMovies}}>
+  return <moviesContext.Provider value={{movies: movies.movies, addReview, reviews: reviews.reviews}}>
       {children}
   </moviesContext.Provider>
 }

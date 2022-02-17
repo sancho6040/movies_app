@@ -27,6 +27,37 @@ header{
   margin: 0;
 }
 
+.header-login{
+  position: absolute;
+  right: 30px;
+  text-decoration: none;
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.header-login:hover{
+  background-color: darkgray;
+  
+}
+
+.user-logo{
+  padding: 3px 0 3px 5px;
+  width: 40px;
+}
+
+.header-login p{
+  padding: 0 5px 0 5px;
+  font-size: 1rem;
+  color: whitesmoke;
+  margin: 0;
+}
+.header-login p:hover{
+  color: #080F28;
+}
+
+/* -----------------hero--------------------------- */
+
 .hero{
   background-color: #219ebc;
 }
@@ -87,4 +118,37 @@ footer{
 
 footer p{
   margin: 0;
+}
+
+/* --------------------login----------------------- */
+
+.login{
+  height: 85vh;
+  background-color: #2a3c7e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-input{
+  border: 3px solid #080F28;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  margin: 10px;
+}
+
+button{
+  background-color: #44ccee;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  margin: 40px;
+  padding: 10px;
+  border: 0px;
+  box-shadow: 5px 5px 5px #080F28;
+}
+
+button:hover{
+  box-shadow: none;
+  background-color: #52aaee;
 }

@@ -1,4 +1,5 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useRef} from 'react'
+import { Navigate } from 'react-router-dom';
 import { userContext } from '../context/UserContext';
 
 export default function Login() {
@@ -12,17 +13,15 @@ export default function Login() {
     event.preventDefault()
 
     setActiveUser({name: user.current.value, password: password.current.value})
-
-    console.log("actveUser", activeUser.name)
-    console.log("users", users)
-    console.log(user.current.value, password.current.value)
+    
+    return <Navigate to="/"/>
   }
 
   return <>
-    <form onSubmit={iniciarSesion}>
-      <input type="text" ref={user} name="user"/>
-      <input type="password" ref={password} name="password"/>
-      <button className='button'>Iniciar sesion</button>
+    <form className='login' onSubmit={iniciarSesion}>
+      <input className='login-input' type="text" ref={user} name="user" placeholder='username'/>
+      <input className='login-input' type="password" ref={password} name="password" placeholder='password'/>
+      <button>Iniciar sesion</button>
     </form>
   </>
 }
