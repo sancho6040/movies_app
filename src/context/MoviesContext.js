@@ -9,23 +9,26 @@ export default function MoviesContext({children}) {
     // const [movies,setMovies] = useState(mockup)
     const [movies,setMovies] = useReducer(moviesReducer, moviesInitialState)
     const [reviews, dispatchReviews] = useReducer(reviewsReducer, reviewsInitialState)
+    const [loading,setLoading] = useState(true)
 
-    const addReview = (movie, stars, comment) =>{
-        setMovies({type: 'addStars', movie, stars})
-        dispatchReviews({type: 'addReview', idMovie: movie.id, comment: comment})
+    const addReview = (movie,stars,comment)=>{
+        setMovies({type:'addStars',movie,stars})
+        dispatchReviews({type:'addReview',idMovie:movie._id,comment})
+        
     }
 
     useEffect(()=>{
-        async function fetchData(){
-            const res = await fetch("https://rickandmortyapi.com/api/character/")
-            const data = await res.json();
-
-            setMovies(data.results)
-        }
-        fetchData()
+        fetch("https://backendtzuzulcode.wl.r.appspot.com/movies")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            setMovies({type:"addMovies",movies:data})
+            setLoading(false)
+        })
+        .catch(error=>setLoading(false))
     },[])
 
-  return <moviesContext.Provider value={{movies: movies.movies, addReview, reviews: reviews.reviews}}>
+  return <moviesContext.Provider value={{loading,movies:movies.movies,addReview,reviews:reviews.reviews}}>
       {children}
   </moviesContext.Provider>
 }
