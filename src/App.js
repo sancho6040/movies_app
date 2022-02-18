@@ -4,15 +4,16 @@ import Details from './pages/Details';
 import Login from './pages/Login';
 import { useContext } from 'react';
 import { userContext } from './context/UserContext';
+import NotFound from './pages/NotFound';
 
 function App() {
 
-  const {activeUser} = useContext(userContext)
+  const {user} = useContext(userContext)
 
-  const userName = (activeUser) =>{
-    console.log(activeUser)
-    if(activeUser.name != undefined){
-      return activeUser.name
+  const userName = (user) =>{
+    console.log(user)
+    if(user.logged){
+      return user.name
     }else{
       return "Iniciar Sesion"
     }
@@ -28,13 +29,14 @@ function App() {
         
         <a className='header-login' href={"/login"}>
           <img className='user-logo' src='https://cdn-icons-png.flaticon.com/512/1177/1177568.png'/>
-          <p>{userName(activeUser)}</p>
+          <p>{userName(user)}</p>
         </a>
       </header>
 
       <main>
         <BrowserRouter>
         <Routes>
+          <Route path='/*' element={<NotFound/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="/details/:id" element={<Details/>}/>
           <Route path="/login" element={<Login/>}/>

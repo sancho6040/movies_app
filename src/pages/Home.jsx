@@ -4,7 +4,7 @@ import { moviesContext } from '../context/MoviesContext';
 
 export default function Home() {
 
-    const {movies} = useContext(moviesContext)
+    const {movies, images} = useContext(moviesContext)
 
     return <>
         {/* <section className='hero'>
@@ -13,7 +13,7 @@ export default function Home() {
             </div>
         </section> */}
         <section className='movies-section'>
-            <Movies movies={movies}/>
+            <Movies movies={movies} image={images}/>
             {console.log("movies", movies)}
         </section>
 

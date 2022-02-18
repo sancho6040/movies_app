@@ -8,6 +8,11 @@ body {
   color: white;
 }
 
+.error{
+  color: black;
+  text-align: center
+}
+
 header{
   background-color: #141A32;
   display: flex;
@@ -122,6 +127,13 @@ footer p{
 
 /* --------------------login----------------------- */
 
+.loading{
+  color: black;
+  text-align: center;
+  font-size: 3rem;
+  padding: 200px;
+}
+
 .login{
   height: 85vh;
   background-color: #2a3c7e;
@@ -151,4 +163,35 @@ button{
 button:hover{
   box-shadow: none;
   background-color: #52aaee;
+}
+
+/* -------------------------Details------------------------------- */
+.details-page{
+  background-color: #080F28;
+  padding: 25px;
+}
+
+.details-movie{
+  display: flex;
+  gap: 25px;
+}
+
+.details-input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-reviews{
+  background-color: #23283d;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 15px;
+
+}
+
+.review{
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid whitesmoke;
 }

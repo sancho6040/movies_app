@@ -4,13 +4,17 @@ import moviesReducer, {moviesInitialState} from '../reducers/moviesReducer';
 
 export const moviesContext = createContext()
 
+const img = [
+    "http://metaunisex.com/wp-content/uploads/2021/12/snwh_poster_bluemontage_4x5fb_1_.jpg",
+    "https://lumiere-a.akamaihd.net/v1/images/p_encanto_homeent_22359_4892ae1c.jpeg"
+]
+
 export default function MoviesContext({children}) {
 
     // const [movies,setMovies] = useState(mockup)
     const [movies,setMovies] = useReducer(moviesReducer, moviesInitialState)
     const [reviews, dispatchReviews] = useReducer(reviewsReducer, reviewsInitialState)
     const [loading,setLoading] = useState(true)
-
     const addReview = (movie,stars,comment)=>{
         setMovies({type:'addStars',movie,stars})
         dispatchReviews({type:'addReview',idMovie:movie._id,comment})

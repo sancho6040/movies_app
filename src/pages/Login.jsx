@@ -33,8 +33,8 @@ export default function Login() {
     }
 
   return <>
-    <form className='login' onSubmit={iniciarSesion}>
-      <input className='login-input' type="text" name="user" placeholder='username'/>
+    <form className='login' onSubmit={signIn}>
+      <input className='login-input' type="email" name="email" placeholder='username'/>
       <input className='login-input' type="password" name="password" placeholder='password'/>
       <button>Iniciar sesion</button>
     </form>
